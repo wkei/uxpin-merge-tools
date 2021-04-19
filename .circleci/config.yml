@@ -9,15 +9,15 @@ jobs:
       - checkout:
           path: ~/project/
       # Yarn install with cache
-    #   - restore_cache:
-        #   key: uxpin-merge-cli-dependencies-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          key: uxpin-merge-cli-dependencies-cache-{{ checksum "package.json" }}
       - run:
           name: "Install dependencies"
           command: make dependencies
-    #   - save_cache:
-    #       key: uxpin-merge-cli-dependencies-cache-{{ checksum "package.json" }}
-    #       paths:
-    #         - ./node_modules
+      - save_cache:
+          key: uxpin-merge-cli-dependencies-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       # Download test repositories with cache
       - restore_cache:
           key: uxpin-merge-cli-test-repos-{{ checksum "shell_scripts/test_resources/Makefile" }}
@@ -46,7 +46,3 @@ jobs:
             CHROME_PATH: /usr/bin/google-chrome
       - store_test_results:
           path: ./reports
-      - run:
-          name: "Upload code coverage"
-          command: ./packages/uxpin-merge-cli/node_modules/.bin/codecov -F unittests -F uxpin_merge_cli
-          working_directory: ~/project/
