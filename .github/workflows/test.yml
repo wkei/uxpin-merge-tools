@@ -1,0 +1,44 @@
+name: Run test
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        working-directory: packages/uxpin-merge-cli
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+
+      - name: Cache merge-cli dependencies
+        id: cache-merge-cli-dependencies
+        uses: actions/cache@v2
+        with:
+          path: "./node_modules"
+          key: uxpin-merge-cli-dependencies-cache-${{ hashFiles('**/uxpin-merge-cli/yarn.lock') }}
+
+      - name: Install dependencies for merge-cli
+        run: make dependencies
+
+      - name: Cache test resources
+        id: cache-test-resources
+        uses: actions/cache@v2
+        with:
+          path: "./test/resources/repos"
+          key: uxpin-merge-cli-test-repos-${{ hashFiles('**/shell_scripts/test_resources/Makefile') }}
+
+      - name: Create test resources
+        run: make test-resources
+
+      - name: Check
+        run: make check
+      - name: Build
+        run: make build
+      - name: Test
+        run: make test-ci
