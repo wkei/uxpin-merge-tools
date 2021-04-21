@@ -20,7 +20,7 @@ jobs:
         id: cache-merge-cli-dependencies
         uses: actions/cache@v2
         with:
-          path: "./node_modules"
+          path: ./node_modules
           key: uxpin-merge-cli-dependencies-cache-${{ hashFiles('**/uxpin-merge-cli/yarn.lock') }}
 
       - name: Install dependencies for merge-cli
@@ -30,7 +30,7 @@ jobs:
         id: cache-test-resources
         uses: actions/cache@v2
         with:
-          path: "./test/resources/repos"
+          path: ./test/resources/repos
           key: uxpin-merge-cli-test-repos-${{ hashFiles('**/shell_scripts/test_resources/Makefile') }}
 
       - name: Create test resources
