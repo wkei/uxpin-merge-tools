@@ -16,6 +16,9 @@ test-resources: ../../test/resources/repos/nordnet-ui-kit ../../test/resources/r
 	cd ../../test/resources/repos \
 	&& git clone https://github.com/uxpin-merge/polaris-react.git polaris \
 	&& cd polaris \
+	&& mkdir ./yarn-cache \
+	&& yarn install --cache-folder ./yarn-cache \
+	&& rm -rf ./yarn-cache
 
 ../../test/resources/repos/mineral-ui:
 	cd ../../test/resources/repos \
