@@ -21,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            **/node_modules
+            **/uxpin-merge-cli/node_modules
           key: uxpin-merge-cli-dependencies-cache-${{ hashFiles('**/uxpin-merge-cli/yarn.lock') }}
 
       - name: Install dependencies for merge-cli
