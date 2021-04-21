@@ -33,6 +33,9 @@ jobs:
           path: "./test/resources/repos"
           key: uxpin-merge-cli-test-repos-${{ hashFiles('**/shell_scripts/test_resources/Makefile') }}
 
+      - name: "Allow cloning git dependencies from github"
+        run: mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+
       - name: Create test resources
         run: make test-resources
 
