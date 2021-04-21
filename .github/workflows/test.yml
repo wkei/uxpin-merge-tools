@@ -42,5 +42,5 @@ jobs:
         run: make check
       - name: Build
         run: make build
-      # - name: Test
-      #   run: make test-ci
+      - name: Test
+        run: make test-ci
