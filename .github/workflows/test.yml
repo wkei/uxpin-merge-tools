@@ -44,3 +44,10 @@ jobs:
         run: make build
       - name: Test
         run: make test-ci
+      - name: "Upload Artifact"
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: |
+            **/test/integration/summary/__snapshots__/polaris-summary.test.js.snap
+          retention-days: 1
