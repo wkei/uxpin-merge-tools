@@ -45,6 +45,14 @@ jobs:
           name: "Build"
           command: make build
       - run:
+          command: |
+            while true; do
+                sleep 5
+                ps auxwwf
+                echo "======"
+            done
+          background: true
+      - run:
           name: "Test"
           command: make test-ci
           no_output_timeout: 30m
