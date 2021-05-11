@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: arm.medium
+    resource_class: medium
     working_directory: ~/project/packages/uxpin-merge-cli
     steps:
       - checkout:
