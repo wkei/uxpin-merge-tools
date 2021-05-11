@@ -1,13 +1,18 @@
 version: 2
+orbs:
+  node: circleci/node@4.3.0
 jobs:
   build:
-    docker:
-      - image: circleci/node:12.18.1
-    resource_class: medium
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
     working_directory: ~/project/packages/uxpin-merge-cli
     steps:
       - checkout:
           path: ~/project/
+      - node/install:
+          install-yarn: true
+          node-version: 12.18.1
       - run:
           name: 'NPM: Set registry'
           command: npm set @uxpin:registry "https://registry.npmjs.org/"
