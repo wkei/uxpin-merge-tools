@@ -5,7 +5,7 @@ jobs:
   build:
     machine:
       image: ubuntu-2004:202101-01
-    resource_class: medium
+    resource_class: arm.medium
     working_directory: ~/project/packages/uxpin-merge-cli
     steps:
       - checkout:
@@ -49,23 +49,60 @@ jobs:
       - run:
           name: "Build"
           command: make build
+
+  test-unit:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    working_directory: ~/project/packages/uxpin-merge-cli
+    steps:
       - run:
           command: |
             while true; do
-                sleep 5
+                sleep 10
                 ps auxwwf
                 echo "======"
             done
           background: true
       - run:
           name: "Test"
-          command: make test-ci
+          command: make test-unit
           no_output_timeout: 30m
           environment:
             CHROME_PATH: /usr/bin/google-chrome
       - store_test_results:
           path: ./reports
+
+  test-integration:
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    working_directory: ~/project/packages/uxpin-merge-cli
+    steps:
       - run:
-          name: "Upload code coverage"
-          command: ./packages/uxpin-merge-cli/node_modules/.bin/codecov -F unittests -F uxpin_merge_cli
-          working_directory: ~/project/
+          command: |
+            while true; do
+                sleep 10
+                ps auxwwf
+                echo "======"
+            done
+          background: true
+      - run:
+          name: "Test"
+          command: make test-integration
+          no_output_timeout: 30m
+          environment:
+            CHROME_PATH: /usr/bin/google-chrome
+      - store_test_results:
+          path: ./reports
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test-unit:
+          requires:
+            - build
+      - test-integration:
+          requires:
+            - build

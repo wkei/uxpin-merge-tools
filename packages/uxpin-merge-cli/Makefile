@@ -36,18 +36,17 @@ test:
 	make test-integration
 
 test-unit:
-	jest --testMatch="**/__tests__/*.test.ts"
+	jest --testMatch="**/__tests__/*.test.js"
 
 watch-test-unit:
 	jest --watchAll --testMatch="**/__tests__/*.test.ts"
 
 test-integration:
-	UXPIN_ENV=test jest --testMatch="**/test/integration/**/*.test.ts"
+	UXPIN_ENV=test jest --testMatch="**/test/integration/**/*.test.js"
 
 test-ci:
 	make test-rename-snapshots
 	UXPIN_ENV=test JEST_JUNIT_OUTPUT_DIR=./reports/jest jest --config="jest-ci.json" --maxWorkers=2 --detectOpenHandles --forceExit
-	make test-remap-coverage
 
 clean:
 	rm -rf ./dist/
