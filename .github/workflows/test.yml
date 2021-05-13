@@ -1,8 +1,5 @@
 name: Run test
 
-env:
-  FORCE_COLOR: 1
-
 on:
   push:
 
