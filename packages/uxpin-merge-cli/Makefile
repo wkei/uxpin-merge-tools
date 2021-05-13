@@ -46,7 +46,7 @@ test-integration:
 
 test-ci:
 	make test-rename-snapshots
-	FORCE_COLOR=2 UXPIN_ENV=test JEST_JUNIT_OUTPUT_DIR=./reports/jest jest --config="jest-ci.json" --maxWorkers=2 --detectOpenHandles --forceExit
+	UXPIN_ENV=test JEST_JUNIT_OUTPUT_DIR=./reports/jest jest --config="jest-ci.json" --maxWorkers=2 --detectOpenHandles --forceExit
 	make test-remap-coverage
 
 clean:

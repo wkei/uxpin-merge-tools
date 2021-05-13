@@ -1416,8 +1416,8 @@ Object {
     "branchName": "master",
     "commitHash": "612c7dddece7e030a234733caa729fb239d7653b",
     "paths": Object {
-      "configPath": "/home/circleci/project/packages/uxpin-merge-cli/test/resources/repos/polaris/uxpin.config.js",
-      "projectRoot": "/home/circleci/project/packages/uxpin-merge-cli/test/resources/repos/polaris",
+      "configPath": "/home/runner/work/uxpin-merge-tools/uxpin-merge-tools/packages/uxpin-merge-cli/test/resources/repos/polaris/uxpin.config.js",
+      "projectRoot": "/home/runner/work/uxpin-merge-tools/uxpin-merge-tools/packages/uxpin-merge-cli/test/resources/repos/polaris",
     },
   },
 }
