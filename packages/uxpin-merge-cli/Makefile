@@ -7,7 +7,7 @@ YARN ?= yarn
 				check check-fix test test-unit test-integration test-ci \
 				clean clean-test-resources \
 				test-remap-coverage test-resources test-rename-snapshots \
-				serve-mineral serve-polaris serve-arui
+				serve-mineral serve-polaris
 
 dependencies:
 	$(YARN) install
