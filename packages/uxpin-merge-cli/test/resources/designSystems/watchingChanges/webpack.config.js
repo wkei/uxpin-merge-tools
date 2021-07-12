@@ -2,6 +2,20 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(s*)css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2
+                        }
+                    },
+                ]
+            },
+            {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
@@ -19,14 +33,10 @@ module.exports = {
                 },
                 test: /\.jsx?$/,
             },
-            {
-                loader: 'ignore-loader',
-                test: /\.css$/,
-            },
 
         ],
     },
     resolve: {
-            extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx'],
     },
 };
